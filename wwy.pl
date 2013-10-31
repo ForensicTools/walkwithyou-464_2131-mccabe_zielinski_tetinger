@@ -1,21 +1,21 @@
+#Things to be achieved:
+#++++warning alllll Psudocode
 
-Things to be achieved:
+#1. Take in an Array of jpeg or png Files (command line entered) have abilit to enter a 
 
-1. Take in an Array of jpeg or png Files (command line entered) have abilit to enter a 
+#directory and use all files in directory
 
-directory and use all files in directory
+#2. sub to do a file crawl through direcotry and some way to tell whether attributes are files 
 
-2. sub to do a file crawl through direcotry and some way to tell whether attributes are files 
+#or directories
 
-or directories
+#3. pipe files to jhead and save data to files
 
-3. pipe files to jhead and save data to files
+#4. scan and seperate gps cordinates from file 
 
-4. scan and seperate gps cordinates from file 
-
-5. modify cordinate inforamtion to work for google maps (convert to decimal)
+#5. modify cordinate inforamtion to work for google maps (convert to decimal)
 
 
-----------------------------------------------------------
-6. create a bread crumb trail in google maps
-----------------------------------------------------------
+#----------------------------------------------------------
+#6. create a bread crumb trail in google maps
+#----------------------------------------------------------
