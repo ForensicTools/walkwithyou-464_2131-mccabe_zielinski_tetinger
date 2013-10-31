@@ -1,6 +1,6 @@
 walkwithyou
 ===========
-Authors: Ryan McCabe, Will Tetinger, Jeff Zielinski
+Authors: Ryan McCabe, Will Tetinger, and Jeff Zielinski
 
 use: perl wwy.pl. Options: -d to specify directory of images. -s to specify specific images (comma delimited). 
 
