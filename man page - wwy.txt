@@ -1,0 +1,47 @@
+WWY(1)                     User Manuals                    WWY(1)
+
+
+NAME
+    wwy - walkwithyou 
+
+SYNOPSIS
+    wwy [input direcrory/file] ...
+
+DESCRIPTION
+     wwy is to help a forensic investigator to track the 
+     movements of a suspect by collecting information from the 
+     exif data of a collection of images. This data will then be 
+     used to obtain GPS coordinates of where the photo was taken 
+     and then map out the path of the suspect.     
+
+OPTIONS
+     -d to specify directory of images.     
+     -o specify output folder
+     -s to specify specific images (comma delimited).
+     -v print version
+     -DEC output will be in Decimal Degrees format
+     -DEG output will be in Degrees, Minutes & Seconds format
+     -GPS outout wull be in Global Positioning System (GPS) format
+     -UTM output will be in Universal Transverse Mercator format
+
+
+ENVIRONMENT
+     jhead
+	system must have installed jhead to used this tool.
+
+DIAGNOSTICS
+     The following diagnostics may be issued on stderr:
+
+   ** CURRENTLY NOT AVIABLE **
+
+BUGS
+     The command name should have been chosen more  carefully  to
+     reflect its purpose.
+
+AUTHOR
+      Ryan McCabe, Jeff Zielinski, and Will Tetinger
+
+SEE ALSO
+     jhead(1)
+
+Linux                Last change: November 2013                    2
