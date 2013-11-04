@@ -29,15 +29,6 @@ ENVIRONMENT
      jhead
 	system must have installed jhead to used this tool.
 
-DIAGNOSTICS
-     The following diagnostics may be issued on stderr:
-
-   ** CURRENTLY NOT AVIABLE **
-
-BUGS
-     The command name should have been chosen more  carefully  to
-     reflect its purpose.
-
 AUTHOR
       Ryan McCabe, Jeff Zielinski, and Will Tetinger
 
