@@ -5,7 +5,7 @@ NAME
     wwy - walkwithyou 
 
 SYNOPSIS
-    wwy [input direcrory/file] ...
+    wwy [input directory/file] ...
 
 DESCRIPTION
      wwy is to help a forensic investigator to track the 
@@ -16,13 +16,10 @@ DESCRIPTION
 
 OPTIONS
      -d to specify directory of images.     
-     -o specify output folder
-     -s to specify specific images (comma delimited).
+     -o specify output file
      -v print version
-     -DEC output will be in Decimal Degrees format
-     -DEG output will be in Degrees, Minutes & Seconds format
-     -GPS outout wull be in Global Positioning System (GPS) format
-     -UTM output will be in Universal Transverse Mercator format
+     -DEC output will be in Decimal format
+     -DMS output will be in Degrees, Minutes & Seconds format
 
 
 ENVIRONMENT
