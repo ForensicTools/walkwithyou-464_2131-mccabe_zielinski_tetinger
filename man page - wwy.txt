@@ -15,8 +15,8 @@ DESCRIPTION
      and then map out the path of the suspect.     
 
 OPTIONS
-     -d to specify directory of images.     
-     -o specify output file
+     -d [directory] to specify directory of images.     
+     -o [output file] specify output file
      -v print version
      -DEC output will be in Decimal format
      -DMS output will be in Degrees, Minutes & Seconds format
