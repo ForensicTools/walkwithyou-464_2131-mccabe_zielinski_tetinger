@@ -23,32 +23,42 @@
 
 #Code using files entered in command line
 
-my @tmpArr;		#Temporary array for storing jhead information of a given file
-my $cnt = 0;	#Counter to keep keep track of number of files read in
+my $fileCnt = 0;	#Counter to keep keep track of number of files read in
+my $optCnt = 0;		#Counter to keep keep track of number of options read in
+my $argCnt = 0;		#Counter for number of arguments read in from command line
 my @dates;		#Array for storing date photo was taken
-my @latitudes;	#Array for GPS latitude of photo
-my @longitudes;	#Array for GPS longitude of photo
+my @latitudes;		#Array for GPS latitude of photo
+my @longitudes;		#Array for GPS longitude of photo
 
 #Populate date, latitude, and longitude arrays
 foreach my $file (@ARGV) {
-	#Read jhead information into temp array
-	@tmpArr = `jhead $file`;
+
+	if ($ARGV[$argCnt] =~ /^[-]/) {
+		print "Option = $ARGV[$cnt]\n";
+		$optCnt++;
+		$argCnt++;
+	}
+	else {
+		#Read jhead information into temp array
+		my @tmpArr = `jhead $file`;
+		
+		#Place date, latitude, and longitude into respective arrays
+		$date[$fileCnt] = $tmpArr[5]; 
+		$latitude[$fileCnt] = $tmpArr[13];
+		$longitude[$fileCnt] = $tmpArr[14];	
 	
-	#Place date, latitude, and longitude into respective arrays
-	$date[$cnt] = $tmpArr[5]; 
-	$latitude[$cnt] = $tmpArr[13];
-	$longitude[$cnt] = $tmpArr[14];	
-
-	chomp $date[$cnt];
-	chomp $latitude[$cnt];
-	chomp $longitude[$cnt];
-
-	#Increment counter variable
-	$cnt++;
+		chomp $date[$fileCnt];
+		chomp $latitude[$fileCnt];
+		chomp $longitude[$fileCnt];
+	
+		#Increment counter variable
+		$fileCnt++;
+		$argCnt++;
+	}
 }	
 	
 #Separate headers from data
-for (my $count = 0; $count < $cnt; $count++) {
+for (my $count = 0; $count < $fileCnt; $count++) {
 	#Remove first 15 characters to isolate data
 	$date[$count] = substr($date[$count], 15); 
 	$latitude[$count] = substr($latitude[$count], 15);
@@ -57,15 +67,13 @@ for (my $count = 0; $count < $cnt; $count++) {
 
 	
 #Convert DMS format to decimal format	
-for (my $count = 0; $count < $cnt; $count++) {	
+for (my $count = 0; $count < $fileCnt; $count++) {	
 	#Temporary arrays to separate cardinal directions from coordinates
 	my $latDir = substr($latitude[$count], 0, 2);
 	my $longDir = substr($longitude[$count], 0, 2);
 	my $tmpLat = substr($latitude[$count], 2);
 	my $tmpLong = substr($longitude[$count], 2);
 	
-	#print "LatDir = $latDir.\nLongDir = $longDir.\nTmpLat = $tmpLat.\nTmpLong = $tmpLong.\n";
-
 	#Separate degree, minute, and second values and remove letters (d, m, s)
 	$tmpLat =~ tr/dms//d;
 	$tmpLong =~ tr/dms//d;
@@ -80,7 +88,8 @@ for (my $count = 0; $count < $cnt; $count++) {
 	$latitude[$count] = $latDir . $tmpLat;
 	$longitude[$count] = $longDir . $tmpLong;
 }	
-	
+
+print $date[0] . "\n";	
 print $latitude[0] . "\n";
 print $longitude[0] . "\n";	
 	
