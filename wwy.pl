@@ -29,15 +29,17 @@ my $argCnt = 0;		#Counter for number of arguments read in from command line
 my @dates;		#Array for storing date photo was taken
 my @latitudes;		#Array for GPS latitude of photo
 my @longitudes;		#Array for GPS longitude of photo
+my @option;		#Array of options
 
 #Populate date, latitude, and longitude arrays
 foreach my $file (@ARGV) {
 
 	if ($ARGV[$argCnt] =~ /^[-]/) {
-		print "Option = $ARGV[$cnt]\n";
+		$option[$optCnt] = $ARGV[$argCnt];
 		$optCnt++;
 		$argCnt++;
 	}
+
 	else {
 		#Read jhead information into temp array
 		my @tmpArr = `jhead $file`;
@@ -67,45 +69,34 @@ for (my $count = 0; $count < $fileCnt; $count++) {
 
 	
 #Convert DMS format to decimal format	
-for (my $count = 0; $count < $fileCnt; $count++) {	
-	#Temporary arrays to separate cardinal directions from coordinates
-	my $latDir = substr($latitude[$count], 0, 2);
-	my $longDir = substr($longitude[$count], 0, 2);
-	my $tmpLat = substr($latitude[$count], 2);
-	my $tmpLong = substr($longitude[$count], 2);
-	
-	#Separate degree, minute, and second values and remove letters (d, m, s)
-	$tmpLat =~ tr/dms//d;
-	$tmpLong =~ tr/dms//d;
-	my @sepLat = split(/ /, $tmpLat);
-	my @sepLong = split(/ /, $tmpLong);
-	
-	#Convert DMS to decimal
-	$tmpLat = ($sepLat[2] / 60 + $sepLat[1]) / 60 + $sepLat[0];
-	$tmpLong = ($sepLong[2] / 60 + $sepLong[1]) / 60 + $sepLong[0];
-	
-	#Append cardinal direction back to coordinates
-	$latitude[$count] = $latDir . $tmpLat;
-	$longitude[$count] = $longDir . $tmpLong;
-}	
+if($option[0] eq "-DMS"){
+	for (my $count = 0; $count < $fileCnt; $count++) {	
+		#Temporary arrays to separate cardinal directions from coordinates
+		my $latDir = substr($latitude[$count], 0, 2);
+		my $longDir = substr($longitude[$count], 0, 2);
+		my $tmpLat = substr($latitude[$count], 2);
+		my $tmpLong = substr($longitude[$count], 2);
+		
+		#Separate degree, minute, and second values and remove letters (d, m, s)
+		$tmpLat =~ tr/dms//d;
+		$tmpLong =~ tr/dms//d;
+		my @sepLat = split(/ /, $tmpLat);
+		my @sepLong = split(/ /, $tmpLong);
+		
+		#Convert DMS to decimal
+		$tmpLat = ($sepLat[2] / 60 + $sepLat[1]) / 60 + $sepLat[0];
+		$tmpLong = ($sepLong[2] / 60 + $sepLong[1]) / 60 + $sepLong[0];
+		
+		#Append cardinal direction back to coordinates
+		$latitude[$count] = $latDir . $tmpLat;
+		$longitude[$count] = $longDir . $tmpLong;
+	}	
+}
+
 
 print $date[0] . "\n";	
 print $latitude[0] . "\n";
 print $longitude[0] . "\n";	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	
