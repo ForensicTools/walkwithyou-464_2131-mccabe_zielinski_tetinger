@@ -17,28 +17,18 @@ sub ProcessFilename
             if ($exif->HasLocation())
             {
                 my ($lat, $lon) = $exif->GetLocation();
+                # Where the code turns it into a google url
                 print("\n$filename contains Lat: $lat, Long: $lon\n");
                 print("URL: http://maps.google.com/maps?q=$lat,+$lon($filename)&iwloc=A&hl=en\n");
                 if ($htmloutput) # save GoogleMaps URL to global hashmap indexed by filename
                 {
                     $file_listing{$filename} = "<A HREF = \"http://maps.google.com/maps?q=$lat,+$lon($filename)&iwloc=A&hl=en\"> http://maps.google.com/maps?q=$lat,+$lon($filename)&iwloc=A&hl=en</A>";
                 }
-                return 1;
-            }
-            else
-            {
-                print("\n$filename : No Location Info available!\n");
-                return 0;
-            }
-        }
-        else
-        {
-            print("\n$filename : Cannot Extract Info!\n");
-            return 0;
-        }
-    }
-    else
-    {
-        print("\n$filename does not exist!\n");
-        return 0;
-    }
+# Can add 
+use Browser::Open qw( open_browser );
+
+my $url = "http://maps.google.com/maps?q=$lat,+$lon($filename)&iwloc=A&hl=en";
+open_browser($url);
+
+# Should open browser to cordiantes (though im still working on how to link them
+
