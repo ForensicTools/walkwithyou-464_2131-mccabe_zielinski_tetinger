@@ -1,4 +1,5 @@
 #!/usr/bin/perl
+#use Browser::Open qw( open_browser ); Untested Module 
 
 #If user enters -v option give version and exit program
 if ($ARGV[0] eq "-v") {
@@ -88,7 +89,7 @@ sub convert {
 		#Append cardinal direction back to coordinates
 		$latitudes[$count] = $latDir . $tmpLat;
 		$longitudes[$count] = $longDir . $tmpLong;
-	}
+	}	
 }	
 
 #Sub to print the name of each file followed by its date taken, latitude, and longitude
@@ -104,6 +105,7 @@ sub print {
 			print OUTFILE "\tDate Taken = $dates[$count]\n";
 			print OUTFILE "\tLatitude = $latitudes[$count]\n";
 			print OUTFILE "\tLongitude = $longitudes[$count]\n";
+			print OUTFILE "\tURL = http://maps.google.com/maps?q=$latitudes[$count],+$longitudes[$count]&iwloc=A&hl=en\n";
 		}
 	
 		#Close the file
@@ -115,6 +117,9 @@ sub print {
 			print "\tDate Taken = $dates[$count]\n";
 			print "\tLatitude = $latitudes[$count]\n";
 			print "\tLongitude = $longitudes[$count]\n";
+			print "\tURL = http://maps.google.com/maps?q=$latitudes[$count],+$longitudes[$count]&iwloc=A&hl=en\n";
+			#open_browser($url); 	Untested, should open default browser, probably one window per file, better presentation being looked into
+			
 		}
 	}
 }
